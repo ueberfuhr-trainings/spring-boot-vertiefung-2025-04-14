@@ -1,4 +1,4 @@
-package com.samples.customers;
+package com.samples.customers.boundary;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

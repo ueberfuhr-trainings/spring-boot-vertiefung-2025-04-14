@@ -9,7 +9,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.samples</groupId>
-  <artifactId>customer-api-provider</artifactId>
+  <artifactId>customerDto-api-provider</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Customer Management API Provider</name>
   <description>Demo project for Spring Boot</description>
