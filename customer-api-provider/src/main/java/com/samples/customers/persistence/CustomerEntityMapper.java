@@ -1,41 +1,16 @@
 package com.samples.customers.persistence;
 
 import com.samples.customers.domain.Customer;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
-@Component
-public class CustomerEntityMapper {
+@Mapper(componentModel = "spring")
+public interface CustomerEntityMapper {
 
-  public CustomerEntity map(Customer source) {
-    if (null == source) {
-      return null;
-    }
-    var target = new CustomerEntity();
-    target.setUuid(source.getUuid());
-    target.setName(source.getName());
-    target.setBirthdate(source.getBirthdate());
-    target.setState(source.getState());
-    return target;
-  }
+  CustomerEntity map(Customer source);
 
-  public Customer map(CustomerEntity source) {
-    if (null == source) {
-      return null;
-    }
-    var target = new Customer();
-    target.setUuid(source.getUuid());
-    target.setName(source.getName());
-    target.setBirthdate(source.getBirthdate());
-    target.setState(source.getState());
-    return target;
-  }
+  Customer map(CustomerEntity source);
 
-  public void copy(CustomerEntity source, Customer target) {
-    target.setUuid(source.getUuid());
-    target.setName(source.getName());
-    target.setBirthdate(source.getBirthdate());
-    target.setState(source.getState());
-  }
-
+  void copy(CustomerEntity source, @MappingTarget Customer target);
 
 }
