@@ -1,5 +1,6 @@
 package com.samples.customers;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +54,7 @@ public class CustomersController {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   ResponseEntity<Customer> createCustomer(
+    @Valid
     @RequestBody
     Customer customer
   ) {
