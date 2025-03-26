@@ -1,0 +1,4 @@
+# Properties für Profil "dev"
+application:
+  initialization:
+    enabled: true
