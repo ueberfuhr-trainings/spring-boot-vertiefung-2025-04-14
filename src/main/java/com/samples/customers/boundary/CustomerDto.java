@@ -1,4 +1,4 @@
-package com.samples.customers;
+package com.samples.customers.boundary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class Customer {
+public class CustomerDto {
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   private UUID uuid;

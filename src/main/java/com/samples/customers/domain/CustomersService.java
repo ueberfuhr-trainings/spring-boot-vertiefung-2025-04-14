@@ -1,6 +1,8 @@
-package com.samples.customers;
+package com.samples.customers.domain;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Map;
 import java.util.Optional;
@@ -8,6 +10,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
+@Validated
 @Service
 public class CustomersService {
 
@@ -24,7 +27,7 @@ public class CustomersService {
       .ofNullable(customers.get(id));
   }
 
-  public void create(Customer customer) {
+  public void create(@Valid Customer customer) {
     customer.setUuid(UUID.randomUUID());
     customers.put(customer.getUuid(), customer);
   }

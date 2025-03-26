@@ -1,5 +1,6 @@
-package com.samples.customers;
+package com.samples.customers.boundary;
 
+import com.samples.customers.domain.CustomersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,25 +25,28 @@ import java.util.stream.Stream;
 public class CustomersController {
 
   private final CustomersService customersService;
+  private final CustomerDtoMapper mapper;
 
   @GetMapping(
     produces = MediaType.APPLICATION_JSON_VALUE
   )
-  Stream<Customer> getAllCustomers() {
+  Stream<CustomerDto> getAllCustomers() {
     return customersService
-      .findAll();
+      .findAll()
+      .map(mapper::map);
   }
 
   @GetMapping(
     path = "/{id}",
     produces = MediaType.APPLICATION_JSON_VALUE
   )
-  Customer getCustomerById(
+  CustomerDto getCustomerById(
     @PathVariable("id")
     UUID uuid
   ) {
     return customersService
       .findById(uuid)
+      .map(mapper::map)
       .orElseThrow(NotFoundException::new);
   }
 
@@ -51,22 +55,24 @@ public class CustomersController {
     consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE
   )
-  ResponseEntity<Customer> createCustomer(
+  ResponseEntity<CustomerDto> createCustomer(
     @Valid
     @RequestBody
-    Customer customer
+    CustomerDto customerDto
   ) {
+    var customer = mapper.map(customerDto);
     customersService.create(customer);
+    var responseDto = mapper.map(customer);
     // Location-Header
     var location = ServletUriComponentsBuilder
       .fromCurrentRequest()
       .path("/{id}")
-      .buildAndExpand(customer.getUuid())
+      .buildAndExpand(responseDto.getUuid())
       .toUri();
     // Response
     return ResponseEntity
       .created(location)
-      .body(customer);
+      .body(responseDto);
   }
 
   @DeleteMapping("/{id}")
