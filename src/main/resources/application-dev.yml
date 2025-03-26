@@ -1,4 +1,7 @@
 # Properties für Profil "dev"
 application:
+  cors:
+    enabled: true
+    allowed-origins: '*.swagger.io'
   initialization:
     enabled: true
