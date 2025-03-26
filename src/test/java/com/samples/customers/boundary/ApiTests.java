@@ -195,6 +195,15 @@ class ApiTests {
           "state": "gelbekatze"
         }
       """,
+    // unknown property
+    """
+        {
+          "gender": "male",
+          "name": "Tom Mayer",
+          "birthdate": "1985-07-03",
+          "state": "active"
+        }
+      """,
   })
   void shouldNotCreateInvalidCustomer(String body) throws Exception {
     mockMvc
