@@ -1,42 +1,42 @@
 package com.samples.customers.domain;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 @Validated
 @Service
+@RequiredArgsConstructor
 public class CustomersService {
 
-  private final Map<UUID, Customer> customers = new ConcurrentHashMap<>();
+  private final CustomersSink sink;
 
   public Stream<Customer> findAll() {
-    return customers
-      .values()
-      .stream();
+    return sink.findAll();
   }
 
   public Optional<Customer> findById(UUID id) {
-    return Optional
-      .ofNullable(customers.get(id));
+    return sink.findById(id);
   }
 
   public void create(@Valid Customer customer) {
-    customer.setUuid(UUID.randomUUID());
-    customers.put(customer.getUuid(), customer);
+    sink.create(customer);
   }
 
   public boolean delete(UUID id) {
-    return customers.remove(id) != null;
+    if (!sink.existsById(id)) {
+      return false;
+    }
+    sink.delete(id);
+    return true;
   }
 
-  public int count() {
-    return customers.size();
+  public long count() {
+    return sink.count();
   }
 }
