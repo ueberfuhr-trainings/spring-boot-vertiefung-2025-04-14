@@ -1,0 +1,6 @@
+# In Cloud: Umgebungsvariablen
+spring:
+  datasource:
+    url: ${DS_URL}
+    username: ${DS_USER}
+    password: ${DS_PASSWORD}
