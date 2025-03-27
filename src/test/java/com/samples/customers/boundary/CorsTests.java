@@ -34,4 +34,16 @@ class CorsTests {
       .andExpect(status().isOk());
   }
 
+  @Test
+  void shouldNotAllowOtherScripts() throws Exception {
+    mockMvc
+      .perform(
+        options("/customers")
+          .header(HttpHeaders.ORIGIN, "google.de")
+          .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST")
+          .header(HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS, HttpHeaders.CONTENT_TYPE)
+      )
+      .andExpect(status().isForbidden());
+  }
+
 }
