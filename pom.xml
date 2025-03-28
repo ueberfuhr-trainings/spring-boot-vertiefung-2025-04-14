@@ -9,6 +9,7 @@
 
   <modules>
     <module>customer-api-provider</module>
+    <module>customer-api-consumer</module>
   </modules>
 
 </project>
