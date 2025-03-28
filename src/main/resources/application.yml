@@ -6,3 +6,9 @@ spring:
     deserialization:
       fail-on-unknown-properties: true
       fail-on-ignored-properties: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: false

@@ -5,3 +5,13 @@ application:
     allowed-origins: '*.swagger.io'
   initialization:
     enabled: true
+spring:
+  datasource:
+    url: jdbc:h2:./.local-db/customers
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
