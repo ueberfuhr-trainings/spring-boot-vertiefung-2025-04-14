@@ -1,6 +1,6 @@
 # Customer Management API Provider
 
-[![CI Pipeline](https://github.com/ueberfuhr-trainings/spring-boot-2025-03-24/actions/workflows/maven.yml/badge.svg)](https://github.com/ueberfuhr-trainings/spring-boot-2025-03-24/actions/workflows/maven.yml)
+[![CI Pipeline](https://github.com/ueberfuhr-trainings/spring-boot-vertiefung-2025-04-14/actions/workflows/maven.yml/badge.svg)](https://github.com/ueberfuhr-trainings/spring-boot-vertiefung-2025-04-14/actions/workflows/maven.yml)
 
 This is a Spring Boot sample for implementing a REST API.
 
