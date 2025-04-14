@@ -10,7 +10,7 @@ This is a Spring Boot sample for implementing a REST API.
 # build the project
 mvn package
 # run the application
-java -jar target/customerDto-api-provider-0.0.1-SNAPSHOT.jar
+java -jar target/customer-api-provider-0.0.1-SNAPSHOT.jar
 # or run the main class from IDE
 ```
 
