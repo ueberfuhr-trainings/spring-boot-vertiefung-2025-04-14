@@ -2,7 +2,7 @@
 application:
   cors:
     enabled: true
-    allowed-origins: '*.swagger.io'
+    allowed-origins: '*.swagger.io,test'
   initialization:
     enabled: true
 spring:
