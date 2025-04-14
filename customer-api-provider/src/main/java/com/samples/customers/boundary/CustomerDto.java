@@ -1,9 +1,8 @@
 package com.samples.customers.boundary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.samples.customers.shared.validation.Adult;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,9 +21,9 @@ public class CustomerDto {
   private String name;
   // @JsonProperty("birth_date")
   @NotNull
-  @Past
+  @Adult
   private LocalDate birthdate;
-  @Pattern(regexp = "active|locked|disabled")
+  @CustomerStateParameter
   private String state;
 
 }

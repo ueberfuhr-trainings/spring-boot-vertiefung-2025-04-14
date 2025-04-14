@@ -1,7 +1,7 @@
 package com.samples.customers.domain;
 
+import com.samples.customers.shared.validation.Adult;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class Customer {
   @Size(min = 3, max = 100)
   private String name;
   @NotNull
-  @Past
+  @Adult
   private LocalDate birthdate;
   private CustomerState state = CustomerState.ACTIVE;
 

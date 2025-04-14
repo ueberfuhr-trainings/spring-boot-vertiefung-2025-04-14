@@ -238,4 +238,21 @@ class ApiTests {
     );
   }
 
+  @Test
+  void shouldNotCreateCustomerThatIsNotAdult() throws Exception {
+    shouldNotCreateInvalidCustomer(
+      String.format("""
+          {
+            "name": "Tom Mayer",
+            "birthdate": "%s",
+            "state": "active"
+          }
+          """,
+        LocalDate
+          .now()
+          .minusYears(10)
+          .format(DateTimeFormatter.ISO_DATE)
+      )
+    );
+  }
 }
