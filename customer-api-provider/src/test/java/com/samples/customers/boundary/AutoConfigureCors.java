@@ -22,6 +22,6 @@ public @interface AutoConfigureCors {
   // String[] is currently not supported - only comma-separated values
   // see CorsConfiguration#corsConfigurer(...)
   @PropertyMapping("application.cors.allowed-origins")
-  String allowedOrigins() default "*";
+  String[] allowedOrigins() default "*";
 
 }
