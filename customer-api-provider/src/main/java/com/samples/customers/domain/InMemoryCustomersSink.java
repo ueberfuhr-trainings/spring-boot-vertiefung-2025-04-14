@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class InMemoryCustomersSink
   implements CustomersSink {
 
-  private final Map<UUID, Customer> customers = new ConcurrentHashMap<>();
+  final Map<UUID, Customer> customers = new ConcurrentHashMap<>();
 
   @Override
   public Stream<Customer> findAll() {
@@ -44,4 +44,5 @@ public class InMemoryCustomersSink
   public long count() {
     return customers.size();
   }
+
 }
