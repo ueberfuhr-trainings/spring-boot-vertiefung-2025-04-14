@@ -2,6 +2,7 @@ package com.samples.customers.domain;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 public class CustomersService {
 
   private final CustomersSink sink;
+  private final ApplicationEventPublisher eventPublisher;
 
   public Stream<Customer> findAll() {
     return sink.findAll();
@@ -26,6 +28,7 @@ public class CustomersService {
 
   public void create(@Valid Customer customer) {
     sink.create(customer);
+    eventPublisher.publishEvent(new CustomerCreatedEvent(customer));
   }
 
   public boolean delete(UUID id) {
@@ -33,6 +36,7 @@ public class CustomersService {
       return false;
     }
     sink.delete(id);
+    eventPublisher.publishEvent(new CustomerDeletedEvent(id));
     return true;
   }
 

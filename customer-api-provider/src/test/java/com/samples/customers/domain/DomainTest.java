@@ -15,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.event.RecordApplicationEvents;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.lang.annotation.Documented;
@@ -53,6 +54,7 @@ import java.util.Collection;
 })
 @ExtendWith(DomainTest.InMemoryCustomersSinkResettingExtension.class)
 @ActiveProfiles("test")
+@RecordApplicationEvents
 /* *****************************************
  * N O T   C O N T E X T - R E L E V A N T *
  ***************************************** */
