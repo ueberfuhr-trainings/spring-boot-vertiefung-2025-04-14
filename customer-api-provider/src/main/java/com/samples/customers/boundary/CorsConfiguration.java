@@ -25,9 +25,13 @@ import static org.springframework.http.HttpHeaders.ORIGIN;
 )
 public class CorsConfiguration {
 
+  @ConditionalOnProperty(
+    name = "application.cors.allowed-origins"
+  )
   @Bean
   WebMvcConfigurer corsConfigurer(
-    @Value("${application.cors.allowed-origins}") final String allowedOrigins
+    // this would not allow to use lists in yml - only comma-separated values
+    @Value("${application.cors.allowed-origins}") final String[] allowedOrigins
   ) {
     return new WebMvcConfigurer() {
       @Override

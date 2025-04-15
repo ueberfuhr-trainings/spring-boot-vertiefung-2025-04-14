@@ -3,3 +3,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+logging:
+  level:
+    org:
+      springframework:
+        test:
+          context:
+            cache: DEBUG
