@@ -21,7 +21,6 @@ class CustomersServiceTests {
     customer.setBirthdate(LocalDate.now().minusYears(20));
     assertThatThrownBy(() -> customersService.create(customer))
       .isInstanceOf(ValidationException.class);
-
   }
 
 }
