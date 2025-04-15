@@ -37,7 +37,7 @@ import java.lang.annotation.Target;
 @ComponentScan(basePackageClasses = BoundaryTest.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@AutoConfigureCors(allowedOrigins = "*.swagger.io")
+@AutoConfigureCors(allowedOrigins = {"*.swagger.io", "test"})
 // mock the domain
 @AutoConfigureDomainMocks
 /* *****************************************
