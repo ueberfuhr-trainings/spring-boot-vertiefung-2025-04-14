@@ -1,5 +1,6 @@
 package com.samples.customers.domain;
 
+import com.samples.customers.shared.interceptors.LogPerformance;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 @Validated
 @Service
 @RequiredArgsConstructor
+@LogPerformance
 public class CustomersService {
 
   private final CustomersSink sink;
