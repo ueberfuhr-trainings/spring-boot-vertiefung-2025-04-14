@@ -10,3 +10,8 @@ logging:
         test:
           context:
             cache: DEBUG
+    com:
+      samples:
+        customers:
+          shared:
+            interceptors: DEBUG
