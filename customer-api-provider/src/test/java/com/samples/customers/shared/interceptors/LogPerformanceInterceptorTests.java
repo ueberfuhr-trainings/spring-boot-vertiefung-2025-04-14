@@ -1,6 +1,7 @@
 package com.samples.customers.shared.interceptors;
 
 import com.samples.customers.CustomerManagementApiProviderApplicationTest;
+import com.samples.customers.test.PrintSpringBootProperties;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,18 @@ public class LogPerformanceInterceptorTests {
   LogPerformanceTestAtClassLevelService logPerformanceTestAtClassLevelService;
 
   @Test
-  void shouldInvokeMethodPerformanceLogging(CapturedOutput output) {
+  void shouldInvokeMethodPerformanceInfoLogging(CapturedOutput output) {
     logPerformanceTestService.doSth();
     assertThat(output)
-      .containsPattern(String.format("(?i).*Method invoked.*%s.*", "doSth"));
+      .containsPattern(String.format("(?i).*INFO.*Method invoked.*%s.*", "doSth"));
+  }
+
+  @PrintSpringBootProperties
+  @Test
+  void shouldInvokeMethodPerformanceDebugLogging(CapturedOutput output) {
+    logPerformanceTestService.doSthDebug();
+    assertThat(output)
+      .containsPattern(String.format("(?i).*DEBUG.*Method invoked.*%s.*", "doSthDebug"));
   }
 
   @Test
