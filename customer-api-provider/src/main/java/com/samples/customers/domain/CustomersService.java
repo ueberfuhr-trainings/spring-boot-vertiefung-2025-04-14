@@ -1,9 +1,9 @@
 package com.samples.customers.domain;
 
 import com.samples.customers.shared.interceptors.LogPerformance;
+import com.samples.customers.shared.interceptors.PublishEvent;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 public class CustomersService {
 
   private final CustomersSink sink;
-  private final ApplicationEventPublisher eventPublisher;
 
   public Stream<Customer> findAll() {
     return sink.findAll();
@@ -28,18 +27,21 @@ public class CustomersService {
     return sink.findById(id);
   }
 
+  @PublishEvent(CustomerCreatedEvent.class)
   public void create(@Valid Customer customer) {
     sink.create(customer);
-    eventPublisher.publishEvent(new CustomerCreatedEvent(customer));
   }
 
-  public boolean delete(UUID id) {
+  public boolean existsById(UUID id) {
+    return sink.existsById(id);
+  }
+
+  @PublishEvent(CustomerDeletedEvent.class)
+  public void delete(UUID id) {
     if (!sink.existsById(id)) {
-      return false;
+      throw new IllegalStateException("Customer with id " + id + " does not exist");
     }
     sink.delete(id);
-    eventPublisher.publishEvent(new CustomerDeletedEvent(id));
-    return true;
   }
 
   public long count() {
