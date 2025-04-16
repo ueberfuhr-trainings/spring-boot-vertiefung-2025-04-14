@@ -1,5 +1,6 @@
 package com.samples.customers.domain;
 
+import com.samples.customers.test.PrintSpringBeans;
 import jakarta.validation.ValidationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ class CustomersServiceEventsTests {
   @Autowired
   ApplicationEvents events;
 
+  @PrintSpringBeans
   @Test
   void shouldPublishEventOnCreateValidCustomer() {
     var customer = new Customer();
@@ -53,8 +55,7 @@ class CustomersServiceEventsTests {
     events.clear(); // reset events
 
     // delete and check
-    assertThat(customersService.delete(customer.getUuid()))
-      .isTrue();
+    customersService.delete(customer.getUuid());
     assertThat(events.stream(CustomerDeletedEvent.class))
       .hasSize(1)
       .first()
@@ -72,8 +73,8 @@ class CustomersServiceEventsTests {
     events.clear(); // reset events
 
     // delete and check
-    assertThat(customersService.delete(customer.getUuid()))
-      .isFalse();
+    assertThatThrownBy(() -> customersService.delete(customer.getUuid()))
+      .isNotNull();
     assertThat(events.stream(CustomerCreatedEvent.class))
       .isEmpty();
 

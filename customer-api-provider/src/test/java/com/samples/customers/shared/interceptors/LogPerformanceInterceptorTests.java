@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @CustomerManagementApiProviderApplicationTest
 @ExtendWith(OutputCaptureExtension.class)
-public class LogPerformanceInterceptorTests {
+class LogPerformanceInterceptorTests {
 
   @Autowired
   LogPerformanceTestService logPerformanceTestService;

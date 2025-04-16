@@ -1,11 +1,12 @@
 package com.samples.customers;
 
-import com.samples.customers.shared.interceptors.AutoConfigureInterceptorTestComponents;
+import com.samples.customers.shared.AutoConfigureSharedComponents;
 import org.junit.jupiter.api.Tag;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.event.RecordApplicationEvents;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -32,7 +33,8 @@ import java.lang.annotation.Target;
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @ActiveProfiles("test")
-@AutoConfigureInterceptorTestComponents
+@AutoConfigureSharedComponents
+@RecordApplicationEvents
 /* *****************************************
  * N O T   C O N T E X T - R E L E V A N T *
  ***************************************** */

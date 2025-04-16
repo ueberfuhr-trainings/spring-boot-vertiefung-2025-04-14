@@ -81,9 +81,10 @@ public class CustomersController {
     @PathVariable("id")
     UUID uuid
   ) {
-    if (!customersService.delete(uuid)) {
+    if (!customersService.existsById(uuid)) {
       throw new NotFoundException();
     }
+    customersService.delete(uuid);
   }
 
 }

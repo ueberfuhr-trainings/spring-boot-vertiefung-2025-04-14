@@ -28,7 +28,7 @@ public class ApiWithMockedDomainTests {
   @Test
   void shouldReturn204OnDeleteExistingCustomer() throws Exception {
     var uuid = UUID.randomUUID();
-    when(customersService.delete(uuid))
+    when(customersService.existsById(uuid))
       .thenReturn(true);
     mockMvc.perform(
         delete("/customers/{uuid}", uuid)
@@ -40,7 +40,7 @@ public class ApiWithMockedDomainTests {
   @Test
   void shouldReturn404OnDeleteNonExistingCustomer() throws Exception {
     var uuid = UUID.randomUUID();
-    when(customersService.delete(uuid))
+    when(customersService.existsById(uuid))
       .thenReturn(false);
     mockMvc.perform(
         delete("/customers/{uuid}", uuid)

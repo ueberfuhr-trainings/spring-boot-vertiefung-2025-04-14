@@ -1,5 +1,6 @@
 package com.samples.customers.domain;
 
+import com.samples.customers.shared.AutoConfigureSharedComponents;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -55,6 +56,7 @@ import java.util.Collection;
 @ExtendWith(DomainTest.InMemoryCustomersSinkResettingExtension.class)
 @ActiveProfiles("test")
 @RecordApplicationEvents
+@AutoConfigureSharedComponents
 /* *****************************************
  * N O T   C O N T E X T - R E L E V A N T *
  ***************************************** */
